@@ -18,7 +18,7 @@ function App() {
             <th>Last Played</th>
             <th>Date Released</th>
           </tr>
-          {data.albums.map(item => {
+          {data.albums.sort((a, b) => a.last_listened < b.last_listened ? 1 : -1).map(item => {
             let date = new Date(item.last_listened).toISOString();
             console.log(date);
             let ampm = ' pm';
