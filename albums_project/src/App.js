@@ -37,7 +37,10 @@ function App() {
               <tr key="{item}">
                   <td>{ item.band_name }</td>
                   <td>{ item.album_title }</td>
-                  <td>{ item.genres}</td>
+                  <td>{ item.genres.map ((genre, i) => [
+                      i > 0 && ", ",
+                      genre
+                  ])}</td>
                   <td>{ date }</td>
                   <td>{ release }</td>
               </tr>
