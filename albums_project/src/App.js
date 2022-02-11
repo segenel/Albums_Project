@@ -19,16 +19,30 @@ function App() {
             <th>Date Released</th>
           </tr>
           {data.albums.map(item => {
-              return (
-                <tr key="{item}">
-                    <td>{ item.band_name }</td>
-                    <td>{ item.album_title }</td>
-                    <td>{ item.genres}</td>
-                    <td>{ item.last_listened }</td>
-                    <td>{ item.release_date }</td>
-                </tr>
-              )
-            })}
+            let date = new Date(item.last_listened).toISOString();
+            console.log(date);
+            let ampm = ' pm';
+            let hours = parseInt(date.slice(11, 13));
+            if (hours > 12) {
+              hours -= 12;
+            } else if (hours == 0) {
+              hours = 12;
+              ampm = " am";
+            }
+            date = date.slice(5, 7) + "/" + date.slice(8, 10) + "/" + date.slice(0, 4) + ' ' + hours + date.slice(13, 16) + ampm;
+            
+            let release = item.release_date;
+            release = release.slice(5) + "/" + release.slice(0, 4);
+            return (
+              <tr key="{item}">
+                  <td>{ item.band_name }</td>
+                  <td>{ item.album_title }</td>
+                  <td>{ item.genres}</td>
+                  <td>{ date }</td>
+                  <td>{ release }</td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>}
     </div>
