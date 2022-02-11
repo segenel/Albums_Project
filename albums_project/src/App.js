@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       {data != null && <table id="albums-container">
         <tbody>
-          <tr>
+          <tr key="header">
             <th>Band</th>
             <th>Album</th>
             <th>Genres</th>
@@ -32,17 +32,19 @@ function App() {
             date = date.slice(5, 7) + "/" + date.slice(8, 10) + "/" + date.slice(0, 4) + ' ' + hours + date.slice(13, 16) + ampm;
             
             let release = item.release_date;
-            release = release.slice(5) + "/" + release.slice(0, 4);
+            if (release)
+              release = release.slice(5) + "/" + release.slice(0, 4);
+
             return (
-              <tr key="{item}">
-                  <td>{ item.band_name }</td>
-                  <td>{ item.album_title }</td>
-                  <td>{ item.genres.map ((genre, i) => [
+              <tr key={item.album_title}>
+                  <td>{ item.band_name === null ? '--' : item.band_name }</td>
+                  <td>{ item.album_title === null ? '--' : item.album_title }</td>
+                  <td>{ item.genres === null ? '--' : item.genres.map ((genre, i) => [
                       i > 0 && ", ",
                       genre
                   ])}</td>
-                  <td>{ date }</td>
-                  <td>{ release }</td>
+                  <td>{ item.last_listened === null ? '--' : date }</td>
+                  <td>{ item.release_date === null ? '--' : release }</td>
               </tr>
             )
           })}
