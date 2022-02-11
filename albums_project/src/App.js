@@ -7,14 +7,19 @@ function App() {
   const [data, setData] = useState(null);
   mockFetchHelper(true, sendData).then(responseData => setData(responseData));
 
-  console.log(data);
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+      {data != null && <table id="albums-container">
+        <tbody>
+          <tr>
+            <th>Band</th>
+            <th>Album</th>
+            <th>Genres</th>
+            <th>Last Played</th>
+            <th>Date Released</th>
+          </tr>
+        </tbody>
+      </table>}
     </div>
   );
 }
