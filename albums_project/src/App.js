@@ -18,6 +18,17 @@ function App() {
             <th>Last Played</th>
             <th>Date Released</th>
           </tr>
+          {data.albums.map(item => {
+              return (
+                <tr key="{item}">
+                    <td>{ item.band_name }</td>
+                    <td>{ item.album_title }</td>
+                    <td>{ item.genres}</td>
+                    <td>{ item.last_listened }</td>
+                    <td>{ item.release_date }</td>
+                </tr>
+              )
+            })}
         </tbody>
       </table>}
     </div>
